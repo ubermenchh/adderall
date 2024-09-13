@@ -63,10 +63,10 @@ void execute() {
 
 int main(int argc, char* argv[]) {
     if (argc == 1) {
-        printf("\n **** Brainfuck Interpreter ****\n\n");
+        printf("\n **** Adderall: A Brainfuck Interpreter ****\n\n");
         printf("  1. Type or paste in brainfuck source code\n");
         printf("  2. Use Ctrl-D to run the code\n");
-        printf("  3. Use ./brainfuck [filename] to execute source file\n"); 
+        printf("  3. Use ./adderall [filename] to execute source file\n"); 
         
         fread(source, 1, SRC_SIZE - 1, stdin);       // read source code from stdin 
         execute();                                   // execute the program 
