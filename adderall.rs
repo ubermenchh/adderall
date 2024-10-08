@@ -1,6 +1,6 @@
-use std::io::{self, Read};
-use std::fs::File;
 use std::env;
+use std::fs::File;
+use std::io::{self, Read};
 
 const MEM_SIZE: usize = 30000;
 const SRC_SIZE: usize = 30000;
@@ -35,7 +35,7 @@ impl Interpreter {
                     if io::stdin().read_exact(&mut input).is_ok() {
                         self.memory[self.ptr] = input[0];
                     }
-                },
+                }
                 '[' => {
                     if self.memory[self.ptr] == 0 {
                         let mut loop_count = 1;
@@ -44,11 +44,11 @@ impl Interpreter {
                             match self.source[self.ip] as char {
                                 '[' => loop_count += 1,
                                 ']' => loop_count -= 1,
-                                _   => {}
+                                _ => {}
                             }
                         }
                     }
-                },
+                }
                 ']' => {
                     if self.memory[self.ptr] != 0 {
                         let mut loop_count = 1;
@@ -57,12 +57,12 @@ impl Interpreter {
                             match self.source[self.ip] as char {
                                 '[' => loop_count -= 1,
                                 ']' => loop_count += 1,
-                                _   => {}
+                                _ => {}
                             }
                         }
                         self.ip -= 1;
                     }
-                },
+                }
                 _ => {}
             }
             self.ip += 1;
@@ -78,7 +78,7 @@ fn main() -> io::Result<()> {
         println!("\n **** Adderall: A Brainfuck Interpreter ****\n");
         println!("  1. Type or paste in brainfuck source code");
         println!("  2. Use Ctrl-D (Unix) or Ctrl-Z (Windows) to run the code");
-        println!("  3. Use cargo run [filename] to execute source file");
+        println!("  3. Use rustc adderall.rs && ./adderall [filename] to execute source file");
 
         io::stdin().read_to_end(&mut interpreter.source)?;
         interpreter.execute();
